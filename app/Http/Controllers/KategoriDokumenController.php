@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class KategoriDokumenController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
-        $data = \App\Profile::all();
+        $data = \App\KategoriDokumen::all();
 
         if(count($data) > 0){ //mengecek apakah data kosong atau tidak
             $res['status'] = "Success!";
@@ -45,22 +44,10 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        $nama_depan = $request->input('nama_depan');
-        $nama_belakang = $request->input('nama_belakang');
-        $nik = $request->input('nik');
-        $tempat_lahir = $request->input('tempat_lahir');
-        $tanggal_lahir = $request->input('tanggal_lahir');
-        $domisili = $request->input('domisili');
-        $nohp = $request->input('nohp');   
+        $name = $request->input('name');  
 
-        $data = new \App\Profile();
-        $data->nama_depan = $nama_depan;
-        $data->nama_belakang = $nama_belakang;
-        $data->nik = $nik;
-        $data->tempat_lahir = $tempat_lahir;
-        $data->tanggal_lahir = $tanggal_lahir;
-        $data->domisili = $domisili;
-        $data->nohp = $nohp;
+        $data = new \App\KategoriDokumen();
+        $data->name = $name;
 
         if($data->save()){
             $res['status'] = "Success!";
@@ -77,7 +64,7 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        $data = \App\Profile::where('id',$id)->get();
+        $data = \App\KategoriDokumen::where('id',$id)->get();
 
         if(count($data) > 0){ //mengecek apakah data kosong atau tidak
             $res['status'] = "Success!";
@@ -110,13 +97,10 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $domisili = $request->input('domisili');
-        $nohp = $request->input('nohp');
+        $name = $request->input('name');
 
-        $data = \App\Profile::where('id',$id)->first();
-        $data->domisili = $domisili;
-        $data->nohp = $nohp;
+        $data = \App\KategoriDokumen::where('id',$id)->first();
+        $data->name = $name;
 
         if($data->save()){
             $res['status'] = "Success!";
@@ -137,8 +121,7 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $data = \App\Profile::where('id',$id)->first();
+        $data = \App\KategoriDokumen::where('id',$id)->first();
 
         if($data->delete()){
             $res['status'] = "Success!";
