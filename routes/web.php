@@ -15,6 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/profile','ProfileController@index');
-Route::get('/profile/{id}','ProfileController@show');
-Route::post('/profile/store','ProfileController@store');
+Route::get('/', function () {
+    return view('base/home_page');
+});
+
+Route::get('/landing', 'BaseController@index');
+
+Route::get('/login', function () {
+    return view('base/login_page');
+});
+
+Auth::routes();
+

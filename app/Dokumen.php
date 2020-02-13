@@ -15,7 +15,7 @@ class Dokumen extends Model
         return $this->belongsTo('App\Dokumen', 'kategori_id');
     }
 
-    public function dokumenUser()
+    public function kat_dokumen()
     {
         return $this->belongsTo('App\Dokumen', 'kategori_id');
     }

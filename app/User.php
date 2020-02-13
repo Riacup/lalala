@@ -40,7 +40,27 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
-    public function user()
+    public function user_dok()
+    {
+        return $this->hasMany('App\User', 'user_id');
+    }
+
+    public function user_album()
+    {
+        return $this->hasMany('App\User', 'user_id');
+    }
+
+    public function user_diari()
+    {
+        return $this->hasMany('App\User', 'user_id');
+    }
+
+    public function user_profile()
+    {
+        return $this->hasOne('App\User', 'user_id');
+    }
+
+    public function user_keluarga()
     {
         return $this->hasMany('App\User', 'user_id');
     }

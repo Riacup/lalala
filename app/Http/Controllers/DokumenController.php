@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class DokumenController extends Controller
 {
@@ -44,16 +46,24 @@ class DokumenController extends Controller
      */
     public function store(Request $request)
     {
+        Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'type' => 'required|max:255',
+            'file' => 'mimes:pdf,jpeg,jpg,png,gif|required|max:10000',
+          ])->validate();
+
         $kategori_id = $request->input('kategori_id');
         $user_id = $request->input('user_id');
         $name = $request->input('name');
-        $type = $request->input('type');  
+        $type = $request->input('type');
+        $file = Storage::disk('public')->putFile('dokumen',$request->file('file'), 'public');
 
         $data = new \App\Dokumen();
         $data->kategori_id = $kategori_id;
         $data->user_id = $user_id;
         $data->name = $name;
         $data->type = $type;
+        $data->file = $file;
 
         if($data->save()){
             $res['status'] = "Success!";
