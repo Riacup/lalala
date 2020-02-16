@@ -34,10 +34,15 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
+        
         $user->save();
+        $user = $request->user();
         $user->assignRole('user');
+        $status = "Successfully created user!";
+        $data = Auth::user();
         return response()->json([
-            'status' => 'Successfully created user!'
+            'status' => $status,
+            'data' => $data,
         ], 201);
     }
 
@@ -53,10 +58,15 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
+
+        $user = $request->user();
         $user->save();
         $user->assignRole('admin');
+        $status = "Successfully created admin!";
+        $data = Auth::user();
         return response()->json([
-            'status' => 'Successfully created admin!'
+            'status' => $status,
+            'data' => $data,
         ], 201);
     }
 
@@ -88,7 +98,13 @@ class AuthController extends Controller
         if ($request->remember_me)
             $token->expires_at = Carbon::now()->addWeeks(1);
         $token->save();
+        $status = "Success";
+        $msg = "Login Sukses";
+        $data = Auth::user();
         return response()->json([
+            'status' => $status,
+            'message' => $msg,
+            'data' => $data,
             'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',
             'expires_at' => Carbon::parse(
