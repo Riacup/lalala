@@ -4,7 +4,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <div class="widget clearfix">
                         <div class="widget-title">
-                            <img src="{{('/tema/images/inofaLogo2.png')}}" alt="inofalogo">
+                            <img src="{{('/tema/images/logoAkar2.png')}}" alt="inofalogo">
                         </div>
                         </div><!-- end clearfix -->
                 </div><!-- end col -->
@@ -22,7 +22,7 @@
                         </div>
 
                         <ul class="footer-links">
-                            <li><a>inofacourse.co.id</a></li>
+                            <li><a>akar.co.id</a></li>
                             <li><a>Jl. Yacaranda, Caturtunggal, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281</a></li>
                             <li><a href="#" class="fa fa-whatsapp"> &nbsp; 081218099939</a></li>
                         </ul><!-- end links -->
@@ -55,7 +55,7 @@
         <div class="container">
             <div class="footer-distributed">
                 <div class="footer-left">                    
-                    <p class="footer-company-name">&copy; <a href="/landing">Inofa Course</a>. All rights reserved  </p>
+                    <p class="footer-company-name">&copy; <a href="/landing">Arsip Keluarga</a>. All rights reserved  </p>
                 </div>
             </div>
         </div><!-- end container -->

@@ -34,11 +34,11 @@ class UserController extends Controller
         public function store(Request $request)
         {
             $this->validate($request, [
-                'name'      => 'required',
+                'nik'      => 'required',
                 'email'     => 'required',
                 'password'  => 'required',
                 'api_token' => 'required',
-                'status'    => 'required',
+                //'status'    => 'required',
             ]);
             
             $this->validate($request, [
@@ -46,7 +46,7 @@ class UserController extends Controller
                 'email' => 'required',
                 'password' => 'required',
                 'api_token' => 'required',
-                'status' => 'required',
+                //'status' => 'required',
                 'statusUser' => 'required',
                 'role' => 'required',
             ]);

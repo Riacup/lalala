@@ -2,17 +2,17 @@
 @extends('base/script_page')
 @section('content')
     <!-- LANDING PAGE -->
-    <div id="home" class="parallax first-section" style="background-image:url('tema/images/bimbel.jpg');">
+    <div id="home" class="parallax first-section" style="background-image:url('tema/images/keluarga.jpg');">
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-md-12">
                     <div class="row mb-4">
                     @if(Auth::guest())
                         <div class="col-md-7">
-                            <h3>Gabung bersama kami dan</h3>
-                            <h3>menjadi juara!</h3>
+                            <h3>Gunakan Aplikasi AKAR</h3>
+                            <h3>Arsip Keluarga :)</h3>
                             <p class="lead"></p>
-                            <a data-scroll href="/registerPilih" class="btn btn-light btn-radius btn-brd" style="font-weight:bold"> GABUNG SEKARANG! </a>
+                            <a data-scroll href="/registerPilih" class="btn btn-light btn-radius btn-brd" style="font-weight:bold"> DOWNLOAD SEKARANG! </a>
                         </div>
                     @else
                     <div class="col-md-7">
@@ -30,7 +30,7 @@
     <div id="paket" class="section lb">
         <div class="container">
             <div class="section-title text-center">
-                <h4 style="color:#4a4a4a">Program Inofa Course</h4>
+                <h4 style="color:#4a4a4a">Fitur Aplikasi AKAR</h4>
                 <hr class="small-line" style="center">
             </div><!-- end title -->
 

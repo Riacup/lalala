@@ -8,8 +8,12 @@ class Profile extends Model
 {
     protected $table = 'profile';
 
-    public function profile()
+    public function user()
     {
-        return $this->belongsTo('App\Profile', 'user_id');
+        return $this->belongsTo('App\User', 'user_id');
+    }
+    public function domisili()
+    {
+        return $this->belongsTo('App\Provinsi', 'domisili_id');
     }
 }

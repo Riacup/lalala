@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -14,7 +16,7 @@ class ProfileController extends Controller
     public function index()
     {
         //
-        $data = \App\Profile::all();
+        $data = \App\Profile::with('user', 'domisili')->get();
 
         if(count($data) > 0){ //mengecek apakah data kosong atau tidak
             $res['status'] = "Success!";
@@ -45,22 +47,26 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
+        $user_id = $request->input('user_id');
         $nama_depan = $request->input('nama_depan');
         $nama_belakang = $request->input('nama_belakang');
         $nik = $request->input('nik');
         $tempat_lahir = $request->input('tempat_lahir');
         $tanggal_lahir = $request->input('tanggal_lahir');
-        $domisili = $request->input('domisili');
-        $nohp = $request->input('nohp');   
+        $recovery_data = $request->input('recovery_data');
+        $domisili_id = $request->input('domisili_id');
+        $foto = Storage::disk('public')->putFile('foto_profil',$request->file('foto'), 'public');  
 
         $data = new \App\Profile();
+        $data->user_id = $user_id;
         $data->nama_depan = $nama_depan;
         $data->nama_belakang = $nama_belakang;
         $data->nik = $nik;
         $data->tempat_lahir = $tempat_lahir;
         $data->tanggal_lahir = $tanggal_lahir;
-        $data->domisili = $domisili;
-        $data->nohp = $nohp;
+        $data->recovery_data = $recovery_data;
+        $data->domisili_id = $domisili_id;
+        $data->foto = $foto;
 
         if($data->save()){
             $res['status'] = "Success!";
@@ -77,7 +83,7 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        $data = \App\Profile::where('id',$id)->get();
+        $data = \App\Profile::where('id',$id)->with('user', 'domisili')->get();
 
         if(count($data) > 0){ //mengecek apakah data kosong atau tidak
             $res['status'] = "Success!";
@@ -111,16 +117,23 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $domisili = $request->input('domisili');
-        $nohp = $request->input('nohp');
+        $recovery_data = $request->input('recovery_data');
+        $domisili_id = $request->input('domisili_id');
+        $foto = Storage::disk('public')->putFile('foto_profil',$request->file('foto'), 'public');
+        $name = $request->input('name');  
 
         $data = \App\Profile::where('id',$id)->first();
-        $data->domisili = $domisili;
-        $data->nohp = $nohp;
+        $data->recovery_data = $recovery_data;
+        $data->domisili_id = $domisili_id;
+        $data->foto = $foto;
+        $data->save();
+        $user = \App\User::where('id', $data->user_id)->first();
+        $user->name = $name;
 
-        if($data->save()){
+        if($user->save()){
             $res['status'] = "Success!";
             $res['result'] = $data;
+            $res['user'] = $user;
             return response($res);
         }
         else{

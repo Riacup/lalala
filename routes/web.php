@@ -21,9 +21,10 @@ Route::get('/', function () {
 
 Route::get('/landing', 'BaseController@index');
 
-Route::get('/login', function () {
-    return view('base/login_page');
-});
-
 Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+    Route::get('/admin', 'AdminController@index');
 

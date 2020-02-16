@@ -10,8 +10,8 @@ class Diari extends Model
     
     protected $primaryKey = 'id';
 
-    public function diari()
+    public function user()
     {
-        return $this->belongsTo('App\Diari', 'user_id');
+        return $this->belongsTo('App\User', 'user_id');
     }
 }

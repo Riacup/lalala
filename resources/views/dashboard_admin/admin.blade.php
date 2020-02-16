@@ -28,7 +28,6 @@
                       <!-- small box -->
                       <div class="small-box bg-red">
                         <div class="inner">
-                          <h3>{{ DB::table('users')->where('role','!=','admin')->count()}}</h3>
                           
                           <p>Pendaftaran</p>
                         </div>
@@ -42,8 +41,6 @@
                       <!-- small box -->
                       <div class="small-box bg-yellow">
                         <div class="inner">
-                          <h3>{{ DB::table('model_siswas')->where('status','ACTIVE')->count()}}</h3>
-                            <p>Murid Aktif</p>
                         </div>
                       <div class="icon">
                         <i class="ion ion-person-stalker"></i>
@@ -55,7 +52,6 @@
                       <!-- small box -->
                       <div class="small-box bg-green">
                         <div class="inner">
-                          <h3>{{ DB::table('model_tutors')->where('status','ACTIVE')->count()}}</h3>
 
                             <p>Tutor Aktif</p>
                         </div>
@@ -69,7 +65,6 @@
                       <!-- small box -->
                       <div class="small-box bg-blue">
                         <div class="inner">
-                          <h3>{{ DB::table('model_invoice')->where('file','!=','null')->count()}}</h3>
 
                             <p>Invoice</p>
                         </div>

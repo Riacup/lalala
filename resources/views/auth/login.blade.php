@@ -8,7 +8,7 @@
             <form method="POST" action="{{ route('login')}}">
                 @csrf
 
-                <h2 class="form-title">Masuk Akun Inofa Courses</h2>
+                <h2 class="form-title">LOGIN ADMIN</h2>
 
                 <label for="email">Email</label>
                 <div class="form-textbox">
@@ -37,12 +37,6 @@
                     <button type="submit" class="btn-masuk">
                         {{ __('Masuk') }}
                     </button>
-                </div>
-
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}></input>
-                        <label class="form-check-label" for="remember">Ingat saya ?</label>
-                        <a href="{{ url('/password/reset') }}" style="font-weight: inherit;color: #408ABD;;"> | Lupa Kata Sandi</a>
                 </div>
             </form>
         </div>

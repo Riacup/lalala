@@ -14,7 +14,11 @@ class DiariController extends Controller
     public function index()
     {
         //
-        $data = \App\Diari::all();
+        $data = \App\Diari::with('user')->get();
+
+        // foreach ($variable as $key => $value) {
+            
+        // }
 
         if(count($data) > 0){ //mengecek apakah data kosong atau tidak
             $res['status'] = "Success!";
@@ -45,22 +49,20 @@ class DiariController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'deskripsi' => 'required|unique:posts|max:500',
-        // ]);
-
+        $user_id = $request->input('user_id');
         $judul = $request->input('judul');
         $tanggal = $request->input('tanggal');
         $deskripsi = $request->input('deskripsi');
 
         $data = new \App\Diari();
+        $data->user_id = $user_id;
         $data->judul = $judul;
         $data->tanggal = $tanggal;
         $data->deskripsi = $deskripsi;
 
         if($data->save()){
             $res['status'] = "Success!";
-            $res['result'] = "$data";
+            $res['result'] = $data;
             return response($res);
         }
     }
@@ -74,7 +76,7 @@ class DiariController extends Controller
     public function show($id)
     {
         //
-        $data = \App\Diari::where('id',$id)->get();
+        $data = \App\Diari::where('id',$id)->with('user')->get();
 
         if(count($data) > 0){ //mengecek apakah data kosong atau tidak
             $res['status'] = "Success!";
@@ -115,7 +117,7 @@ class DiariController extends Controller
 
         if($data->save()){
             $res['status'] = "Success!";
-            $res['result'] = "$data";
+            $res['result'] = $data;
             return response($res);
         }
         else{
@@ -137,7 +139,7 @@ class DiariController extends Controller
 
         if($data->delete()){
             $res['status'] = "Success!";
-            $res['result'] = "$data";
+            $res['result'] = $data;
             return response($res);
         }
         else{

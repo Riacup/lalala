@@ -9,13 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
  
      <!-- Site Metas -->
-    <title>Inofa Course</title>  
+    <title>AKAR</title>  
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="/tema/images/inofaLogo.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="/tema/images/logo.png" type="image/x-icon" />
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/tema/css/bootstrap.min.css">
@@ -28,13 +28,13 @@
     <!-- Custom CSS -->
      <link rel="stylesheet" href="/tema/css/custom.css">         
     <!-- Font Icon -->
-    <link rel="stylesheet" href="fonts/ material-design-iconic-font.min.css">
+    <!-- <link rel="stylesheet" href="fonts/ material-design-iconic-font.min.css"> -->
     <!-- Main css -->
     <link rel="stylesheet" href="css/style.css">
 
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+      <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script> -->
 
 </head>
  <!-- ALL JS FILES -->
@@ -50,9 +50,9 @@
     <script src="/tema/js/custom.js"></script>
 	<script src="/tema/js/zenith.js"></script>
     <!-- JS -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
     <link rel="stylesheet" href="/lte/plugins/bootstrap/js/bootstrap.min.js">
-    <script src="js/main.js"></script>
+    <!-- <script src="js/main.js"></script> -->
 	<script>
 		$('#default').zenith({
 			layout: 'default' , 
