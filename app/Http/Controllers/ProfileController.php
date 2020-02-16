@@ -58,7 +58,7 @@ class ProfileController extends Controller
         $foto = Storage::disk('public')->putFile('foto_profil',$request->file('foto'), 'public');  
 
         $data = new \App\Profile();
-        $data->user_id = $user_id;
+        Auth::id();
         $data->nama_depan = $nama_depan;
         $data->nama_belakang = $nama_belakang;
         $data->nik = $nik;

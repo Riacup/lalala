@@ -36,13 +36,11 @@ class AuthController extends Controller
         ]);
         
         $user->save();
-        $user = $request->user();
         $user->assignRole('user');
         $status = "Successfully created user!";
         $data = Auth::user();
         return response()->json([
             'status' => $status,
-            'data' => $data,
         ], 201);
     }
 
