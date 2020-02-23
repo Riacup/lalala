@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'status','api_token'
+        'name', 'email', 'password', 'status','api_token', 'kode_id'
     ];
 
     /**
@@ -64,4 +64,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\User', 'user_id');
     }
+    public function kode()
+    {
+        return $this->belongsTo('App\KodeKeluarga', 'kode_id');
+    }
+    
+
 }

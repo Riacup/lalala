@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-success elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
       <span class="brand-text font-weight-light">
@@ -22,17 +22,25 @@
                with font-awesome or any other icon font library -->
          <li class="nav-item">
             <a href="/admin" class="nav-link {{ Request::segment(1) === 'admin' ? 'nav-link active' : null }}">
-              <i class="far fa-circle nav-icon"></i>
+              <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
               </p>
             </a>
           </li> 
           <li class="nav-item">
-            <a href="/manajemenTutor" class="nav-link {{ Request::segment(1) === 'manajemenTutor' ? 'nav-link active' : null }}">
-              <i class="far fa-circle nav-icon"></i>
+            <a href="/pengguna" class="nav-link {{ Request::segment(1) === 'pengguna' ? 'nav-link active' : null }}">
+              <i class="nav-icon fas fa-user"></i>
               <p>
                 Data Pengguna
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/keluarga" class="nav-link {{ Request::segment(1) === 'keluarga' ? 'nav-link active' : null }}">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Data Keluarga
               </p>
             </a>
           </li>

@@ -8,6 +8,7 @@ use App\Mail\DataMemberReminder;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\User;
+use App\KodeKeluarga;
 use Illuminate\Support\Str;
 
 class AuthController extends Controller
@@ -26,15 +27,27 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
+            'kode' => 'required|string',
             'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|confirmed'
+            'password' => 'required|string|confirmed',
         ]);
+
+        if($request->exist == 'not-exist'){
+            $kode_keluarga = new KodeKeluarga;
+            $kode_keluarga->kode = $request->kode;
+            $kode_keluarga->save();
+            
+        }else {
+            $kode_keluarga = KodeKeluarga::where('kode', $request->kode)->first();
+        }
+            
         $user = new User([
             'name' => $request->name,
             'email' => $request->email,
+            'kode_id' => $kode_keluarga->id_kode,
             'password' => bcrypt($request->password)
         ]);
-        
+    
         $user->save();
         $user->assignRole('user');
         $status = "Successfully created user!";

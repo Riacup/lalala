@@ -51,6 +51,7 @@ class ProfileController extends Controller
         $nama_depan = $request->input('nama_depan');
         $nama_belakang = $request->input('nama_belakang');
         $nik = $request->input('nik');
+        $jenis_kelamin = $request->input('jenis_kelamin');
         $tempat_lahir = $request->input('tempat_lahir');
         $tanggal_lahir = $request->input('tanggal_lahir');
         $recovery_data = $request->input('recovery_data');
@@ -58,10 +59,12 @@ class ProfileController extends Controller
         $foto = Storage::disk('public')->putFile('foto_profil',$request->file('foto'), 'public');  
 
         $data = new \App\Profile();
-        Auth::id();
+        //Auth::id();
+        $data->user_id =$user_id;
         $data->nama_depan = $nama_depan;
         $data->nama_belakang = $nama_belakang;
         $data->nik = $nik;
+        $data->jenis_kelamin = $jenis_kelamin;
         $data->tempat_lahir = $tempat_lahir;
         $data->tanggal_lahir = $tanggal_lahir;
         $data->recovery_data = $recovery_data;

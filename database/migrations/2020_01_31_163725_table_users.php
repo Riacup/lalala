@@ -15,10 +15,12 @@ class TableUsers extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('kode_id')->unsigned()->nullable();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->foreign('kode_id')->references('id_kode')->on('kode_keluarga')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

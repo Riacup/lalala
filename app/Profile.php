@@ -12,6 +12,7 @@ class Profile extends Model
     {
         return $this->belongsTo('App\User', 'user_id');
     }
+    
     public function domisili()
     {
         return $this->belongsTo('App\Provinsi', 'domisili_id');

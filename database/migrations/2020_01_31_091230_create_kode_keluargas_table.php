@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFileToDokumenTable extends Migration
+class CreateKodeKeluargasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddFileToDokumenTable extends Migration
      */
     public function up()
     {
-        Schema::table('dokumen', function (Blueprint $table) {
-            $table->string('file')->nullable();
+        Schema::create('kode_keluarga', function (Blueprint $table) {
+            $table->increments('id_kode');
+            $table->string('kode');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class AddFileToDokumenTable extends Migration
      */
     public function down()
     {
-        Schema::table('dokumen', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('kode_keluarga');
     }
 }

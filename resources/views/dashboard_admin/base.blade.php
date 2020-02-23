@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
   <title>Dashboard | Admin</title>
-  <link rel="shortcut icon" href="/tema/images/inofaLogo.png" type="image/x-icon"/>
+  <link rel="shortcut icon" href="/tema/images/Logo.png" type="image/x-icon"/>
 
   <!-- DataTable -->  
   <link rel="stylesheet" href="{{ asset('/lte/plugins/datatables/dataTables.bootstrap4.css') }}">
@@ -20,6 +20,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('/lte/dist/css/adminlte.css') }}">
   <link rel="stylesheet" href="{{ asset('/lte/dist/css/adminlte.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('/lte/dist/css/chart.min.css') }}">
   <!-- Icons-->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Google Font: Source Sans Pro -->
@@ -62,6 +63,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('/lte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('/lte/dist/js/adminlte.min.js') }}"></script>
+<script src="{{ asset('/lte/dist/js/chart.min.js') }}"></script>
 <!-- DataTables -->
 <script src="{{ asset('/lte/plugins/datatables/jquery.dataTables.js') }}"></script>
 <script src="{{ asset('/lte/plugins/datatables/dataTables.bootstrap4.js') }}"></script>

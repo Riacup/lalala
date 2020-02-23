@@ -16,6 +16,7 @@ class CreateKeluargasTable extends Migration
         Schema::create('keluarga', function (Blueprint $table) {
             $table->increments('nik');
             $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('kode_id')->unsigned()->nullable();
             $table->enum('hubungan',['ayah', 'ibu', 'suami', 'istri', 'anak']);
             $table->string('nama_lengkap');
             $table->boolean('jenis_kelamin')->default(0);
@@ -25,6 +26,7 @@ class CreateKeluargasTable extends Migration
             $table->string('lokasi_pemakaman')->nullable();
             $table->string('foto')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('kode_id')->references('id_kode')->on('kode_keluarga')->onDelete('cascade');
             $table->timestamps();
         });
        

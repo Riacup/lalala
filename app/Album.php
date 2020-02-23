@@ -10,13 +10,13 @@ class Album extends Model
 
     protected $primaryKey = 'id';
 
-    public function album()
+    public function dokumen()
     {
-        return $this->belongsTo('App\Album', 'user_id');
+        return $this->belongsTo('App\User', 'user_id');
     }
 
-    public function kat_album()
+    public function kat_dokumen()
     {
-        return $this->belongsTo('App\Album', 'user_id');
+        return $this->belongsTo('App\KategoriAlbum', 'kategori_id');
     }
 }

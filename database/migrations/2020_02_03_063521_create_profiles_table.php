@@ -19,6 +19,7 @@ class CreateProfilesTable extends Migration
             $table->string('nama_depan');
             $table->string('nama_belakang');
             $table->string('nik');
+            $table->enum('jenis_kelamin',['laki-laki', 'perempuan']);
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('recovery_data');

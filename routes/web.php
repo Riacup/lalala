@@ -19,12 +19,20 @@ Route::get('/', function () {
     return view('base/home_page');
 });
 
+Route::get('/home', 'HomeController@index')->name('home');
+//Halaman utama atau landing
 Route::get('/landing', 'BaseController@index');
 
+//Halaman login
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Halaman dashboard
+Route::get('/admin', 'GrafikController@index');
+Route::get('/monthly-ajax/{date?}', 'GrafikController@monthlyAjax')->name('monthly-ajax'); 
+Route::get('/monthly-data/{date?}', 'GrafiksController@getMonthly')->name('monthly-trans'); 
 
+//Halaman data pengguna
+Route::resource('/pengguna', 'PenggunaController');
 
-    Route::get('/admin', 'AdminController@index');
-
+//Halaman data keluarga
+Route::resource('/keluarga', 'DataKeluargaController');

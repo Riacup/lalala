@@ -12,11 +12,11 @@ class Dokumen extends Model
 
     public function dokumen()
     {
-        return $this->belongsTo('App\Dokumen', 'kategori_id');
+        return $this->belongsTo('App\User', 'user_id');
     }
 
     public function kat_dokumen()
     {
-        return $this->belongsTo('App\Dokumen', 'kategori_id');
+        return $this->belongsTo('App\KategoriDokumen', 'kategori_id');
     }
 }

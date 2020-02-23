@@ -56,14 +56,18 @@ class AlbumController extends Controller
         $user_id = $request->input('user_id');
         $name = $request->input('name');
         $type = $request->input('type');
-        $photo = Storage::disk('public')->putFile('album',$request->file('photo'), 'public');
+        foreach ($request->photo as $photo) {
+            $photo = Storage::disk('public')->putFile('album',$photo, 'public');
+            $data = new \App\Album();
+            $data->kategori_id = $kategori_id;
+            $data->user_id = $user_id;
+            $data->name = $name;
+            $data->type = $type;
+            $data->photo = $photo;
+        }
+        
 
-        $data = new \App\Album();
-        $data->kategori_id = $kategori_id;
-        $data->user_id = $user_id;
-        $data->name = $name;
-        $data->type = $type;
-        $data->photo = $photo;
+        
 
         if($data->save()){
             $res['status'] = "Success!";

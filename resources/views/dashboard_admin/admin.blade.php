@@ -1,91 +1,57 @@
 @extends('dashboard_admin/base')
 @section('content')
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+ <!-- Content Wrapper. Contains page content -->
+ <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
+    <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard Admin</h1>
-          </div><!-- /.col -->
+            <h1>Dashboard</h1>
+          </div>
           <div class="col-sm-6">
-            
-          </div><!-- /.col -->
-        </div><!-- /.row -->
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+          </div>
+        </div>
       </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+    </section>
 
     <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
-      <div class="container">
-            <div class="card mt-2">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-lg-3 col-xs-6">
-                      <!-- small box -->
-                      <div class="small-box bg-red">
-                        <div class="inner">
-                          
-                          <p>Pendaftaran</p>
-                        </div>
-                      <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
-                      </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-xs-6">
-                      <!-- small box -->
-                      <div class="small-box bg-yellow">
-                        <div class="inner">
-                        </div>
-                      <div class="icon">
-                        <i class="ion ion-person-stalker"></i>
-                      </div>
-                        <a href="/daftarSiswa" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-xs-6">
-                      <!-- small box -->
-                      <div class="small-box bg-green">
-                        <div class="inner">
+    <section class="content">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="card card-success">   
+                <div class="card-header">
+                  <h3 class="card-title">Grafik Data Pengguna</h3>
 
-                            <p>Tutor Aktif</p>
-                        </div>
-                      <div class="icon">
-                        <i class="ion ion-person"></i>
-                      </div>
-                        <a href="/manajemenTutor" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i></button>
                   </div>
                 </div>
-                <div class="col-lg-3 col-xs-6">
-                      <!-- small box -->
-                      <div class="small-box bg-blue">
-                        <div class="inner">
-
-                            <p>Invoice</p>
-                        </div>
-                      <div class="icon">
-                        <i class="ion ion-ios-cart"></i>
-                      </div>
-                        <a href="/daftarSiswa" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <div class="card-body">
+                  <div class="chart">
+                    <canvas id="barChart" style="height:230px"></canvas>
                   </div>
-                </div> 
+                </div>
               </div>
             </div>
+            <!-- /.card-body -->
           </div>
-
-            
-          <!-- /.col-md-6 -->
-          
+          <!-- /.card -->
         </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
     <!-- /.content -->
-  </div>
+</div>
   <!-- /.content-wrapper -->
 @endsection
