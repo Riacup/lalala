@@ -37,10 +37,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
                 @php $no = 1;
                 @endphp
                 @foreach($data as $d)
+                <tr>
                   <td>{{ $no++ }}</td>
                   <td>
                     {{ $d->nama_depan }}
@@ -56,8 +56,8 @@
                       <span>Hapus</span>
                     </a>
                   </td>
-                  @endforeach
                 </tr>
+                @endforeach
                 </tbody>
               </table>
             </div>

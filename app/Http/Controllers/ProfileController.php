@@ -120,12 +120,16 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $nama_depan = $request->input('nama_depan');
+        $nama_belakang = $request->input('nama_belakang');
         $recovery_data = $request->input('recovery_data');
         $domisili_id = $request->input('domisili_id');
         $foto = Storage::disk('public')->putFile('foto_profil',$request->file('foto'), 'public');
         $name = $request->input('name');  
 
         $data = \App\Profile::where('id',$id)->first();
+        $data->nama_depan = $nama_depan;
+        $data->nama_belakang = $nama_belakang;
         $data->recovery_data = $recovery_data;
         $data->domisili_id = $domisili_id;
         $data->foto = $foto;

@@ -37,17 +37,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <!-- <tr>
+                <tr>
                 @php $no = 1;
                 @endphp
                 @foreach($data as $d)
                   <td>{{ $no++ }}</td>
-                  <td>
-                    {{ $d->nama_depan }}
-                    {{ $d->nama_belakang }}  
-                  </td>
+                  <td>{{ $d->user->kode->kode }}</td>
                   <td>{{ $d->nik }}</td>
-                  <td>{{ $d->user->email }}</td>
+                  <td>{{ $d->created_at }}</td>
                   <td>
                     <a href="{{route('pengguna.show', $d->id)}}" class=" btn btn-sm btn-primary">
                       <span>Lihat</span>
@@ -57,7 +54,7 @@
                     </a>
                   </td>
                   @endforeach
-                </tr> -->
+                </tr>
                 </tbody>
               </table>
             </div>

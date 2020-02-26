@@ -106,14 +106,12 @@ class AuthController extends Controller
         $tokenResult = $user->createToken('Personal Access Token');
         $token = $tokenResult->token;
         if ($request->remember_me)
-            $token->expires_at = Carbon::now()->addWeeks(1);
+             $token->expires_at = Carbon::now()->addWeeks(1);
         $token->save();
         $status = "Success";
-        $msg = "Login Sukses";
         $data = Auth::user();
         return response()->json([
             'status' => $status,
-            'message' => $msg,
             'data' => $data,
             'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',
