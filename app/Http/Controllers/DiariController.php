@@ -14,7 +14,7 @@ class DiariController extends Controller
     public function index()
     {
         //
-        $data = \App\Diari::with('user')->get();
+        $data = \App\Diari::all();
 
         // foreach ($variable as $key => $value) {
             
@@ -76,7 +76,7 @@ class DiariController extends Controller
     public function show($id)
     {
         //
-        $data = \App\Diari::where('id',$id)->with('user')->get();
+        $data = \App\Diari::where('id',$id)->get();
 
         if(count($data) > 0){ //mengecek apakah data kosong atau tidak
             $res['status'] = "Success!";
@@ -110,9 +110,11 @@ class DiariController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $judul = $request->input('judul');
         $deskripsi = $request->input('deskripsi');
 
         $data = \App\Diari::where('id',$id)->first();
+        $data->judul = $judul;
         $data->deskripsi = $deskripsi;
 
         if($data->save()){

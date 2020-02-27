@@ -8,10 +8,10 @@ class KategoriAlbum extends Model
 {
     protected $table = 'kategori_album';
 
-    protected $primaryKey = 'id_album';
+    protected $primaryKey = 'id_kategori';
 
     public function kategori_album()
     {
-        return $this->hasMany('App\KategoriDokumen', 'kategori_id');
+        return $this->hasMany('App\KategoriAlbum', 'kategori_id');
     }
 }

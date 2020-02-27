@@ -64,7 +64,7 @@ class KategoriDokumenController extends Controller
      */
     public function show($id)
     {
-        $data = \App\KategoriDokumen::where('id',$id)->get();
+        $data = \App\KategoriDokumen::where('id_kategori',$id)->get();
 
         if(count($data) > 0){ //mengecek apakah data kosong atau tidak
             $res['status'] = "Success!";
@@ -99,7 +99,7 @@ class KategoriDokumenController extends Controller
     {
         $name = $request->input('name');
 
-        $data = \App\KategoriDokumen::where('id',$id)->first();
+        $data = \App\KategoriDokumen::where('id_kategori',$id)->first();
         $data->name = $name;
 
         if($data->save()){
@@ -121,10 +121,10 @@ class KategoriDokumenController extends Controller
      */
     public function destroy($id)
     {
-        $data = \App\KategoriDokumen::where('id',$id)->first();
+        $data = \App\KategoriDokumen::where('id_kategori',$id)->first();
 
         if($data->delete()){
-            $res['status'] = "Success!";
+            $res['status'] = "Deleted Success!";
             $res['result'] = $data;
             return response($res);
         }

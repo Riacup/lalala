@@ -50,7 +50,7 @@ Route::post('/keluarga/store','KeluargaController@store');
 
 /*Modul Kategori Dokumen*/
 Route::get('/dokumen/kategori','KategoriDokumenController@index');
-Route::get('/dokumen/kategori{id}','KategoriDokumenController@show');
+Route::get('/dokumen/kategori/{id}','KategoriDokumenController@show');
 Route::post('/dokumen/kategori/store','KategoriDokumenController@store');
 Route::post('/dokumen/kategori/update/{id}','KategoriDokumenController@update');
 Route::post('/dokumen/kategori/delete/{id}','KategoriDokumenController@destroy');

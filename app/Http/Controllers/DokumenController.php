@@ -113,10 +113,10 @@ class DokumenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $nama = $request->input('nama');
+        $name = $request->input('name');
 
         $data = \App\Dokumen::where('id',$id)->first();
-        $data->nama = $nama;
+        $data->name = $name;
 
         if($data->save()){
             $res['status'] = "Success!";
@@ -140,7 +140,7 @@ class DokumenController extends Controller
         $data = \App\Dokumen::where('id',$id)->first();
 
         if($data->delete()){
-            $res['status'] = "Success!";
+            $res['status'] = "Deleted Success!";
             $res['result'] = $data;
             return response($res);
         }

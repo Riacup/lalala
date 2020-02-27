@@ -52,7 +52,7 @@
                     <a href="{{route('pengguna.show', $d->id)}}" class=" btn btn-sm btn-primary">
                       <span>Lihat</span>
                     </a>
-                    <a href="detail/detail_user.html" class=" btn btn-sm btn-danger">
+                    <a href="{{route('pengguna.destroy', $d->id)}}" class=" btn btn-sm btn-danger">
                       <span>Hapus</span>
                     </a>
                   </td>
