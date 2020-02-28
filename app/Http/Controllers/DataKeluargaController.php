@@ -13,8 +13,8 @@ class DataKeluargaController extends Controller
      */
     public function index()
     {
-        $data = \App\KodeKeluarga::with('user')->get();
-        return view('dashboard_admin.keluarga');
+        $data = \App\KodeKeluarga::with('kode_user', 'kode_keluarga')->get();
+        return view('dashboard_admin.keluarga', compact('data'));
     }
 
     /**

@@ -76,6 +76,10 @@ class ProfileController extends Controller
             $res['result'] = $data;
             return response($res);
         }
+        else{
+            $res['status'] = "Failed!";
+            return response($res);
+        }
     }
 
     /**
@@ -94,7 +98,7 @@ class ProfileController extends Controller
             return response($res);
         }
         else{
-            $res['status'] = "Failed!";
+            $res['status'] = "Empty!";
             return response($res);
         }
     }

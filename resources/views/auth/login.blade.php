@@ -7,9 +7,9 @@
             <form method="POST" action="{{ route('login')}}">
                 @csrf                
                 <img class="rounded float-left" src="{{('/tema/images/logoUGM.png')}}" width="100" >
-                <img class="rounded float-right" src="{{('/tema/images/logo.png')}}" width="100" > <br><br><br>
+                <img class="rounded float-right" src="{{('/tema/images/logo.png')}}" width="100" > <br><br><br><br>
                
-                <h2 class="form-title">ARSIP KELUARGA</h2>
+                <h2 class="form-title">ARSIP <br> KELUARGA</h2>
                 <label for="email">Email</label>
                 <!-- <div class="form-textbox"> -->
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>

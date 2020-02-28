@@ -46,7 +46,11 @@ Route::post('/diari/store','DiariController@store');
 Route::post('/diari/update/{id}','DiariController@update');
 Route::post('/diari/delete/{id}','DiariController@destroy');
 
+Route::get('/keluarga','KeluargaController@index');
+Route::get('/keluarga/{id}','KeluargaController@show');
 Route::post('/keluarga/store','KeluargaController@store');
+Route::post('/keluarga/update/{id}','KeluargaController@update');
+Route::post('/keluarga/delete/{id}','KeluargaController@destroy');
 
 /*Modul Kategori Dokumen*/
 Route::get('/dokumen/kategori','KategoriDokumenController@index');

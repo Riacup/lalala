@@ -32,28 +32,26 @@
                   <th>No.</th>
                   <th>Kode Keluarga</th>
                   <th>Jumlah Anggota</th>
-                  <th>Created At</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
                 @php $no = 1;
                 @endphp
                 @foreach($data as $d)
+                <tr>
                   <td>{{ $no++ }}</td>
                   <td>{{ $d->user->kode->kode }}</td>
-                  <td>{{ $d->nik }}</td>
-                  <td>{{ $d->created_at }}</td>
+                  <td>2</td>
+                
                   <td>
-                    <a href="{{route('pengguna.show', $d->id)}}" class=" btn btn-sm btn-primary">
+                    <a href="" class=" btn btn-sm btn-primary">
                       <span>Lihat</span>
                     </a>
                     <a href="detail/detail_user.html" class=" btn btn-sm btn-danger">
                       <span>Hapus</span>
                     </a>
                   </td>
-                  @endforeach
                 </tr>
                 </tbody>
               </table>

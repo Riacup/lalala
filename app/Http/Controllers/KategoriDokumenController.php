@@ -54,6 +54,10 @@ class KategoriDokumenController extends Controller
             $res['result'] = $data;
             return response($res);
         }
+        else{
+            $res['status'] = "Failed!";
+            return response($res);
+        }
     }
 
     /**
@@ -72,7 +76,7 @@ class KategoriDokumenController extends Controller
             return response($res);
         }
         else{
-            $res['status'] = "Failed!";
+            $res['status'] = "Empty!";
             return response($res);
         }
     }

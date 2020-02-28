@@ -47,14 +47,12 @@ class AlbumController extends Controller
     public function store(Request $request)
     {
         Validator::make($request->all(), [
-            'name' => 'required|max:255',
             'type' => 'required|max:255',
             'photo' => 'mimes:pdf,jpeg,jpg,png,gif|required|max:10000',
           ])->validate();
 
         $kategori_id = $request->input('kategori_id');
         $user_id = $request->input('user_id');
-        $name = $request->input('name');
         $type = $request->input('type');
         foreach ($request->photo as $photo) {
             $photo = Storage::disk('public')->putFile('album',$photo, 'public');
@@ -63,13 +61,16 @@ class AlbumController extends Controller
         $data = new \App\Album();
         $data->kategori_id = $kategori_id;
         $data->user_id = $user_id;
-        $data->name = $name;
         $data->type = $type;
         $data->photo = $photo;
 
         if($data->save()){
             $res['status'] = "Success!";
             $res['result'] = $data;
+            return response($res);
+        }
+        else{
+            $res['status'] = "Failed!";
             return response($res);
         }
     }

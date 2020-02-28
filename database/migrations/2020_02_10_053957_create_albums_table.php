@@ -17,7 +17,6 @@ class CreateAlbumsTable extends Migration
             $table->increments('id');
             $table->integer('kategori_id')->unsigned()->nullable();
             $table->integer('user_id')->unsigned()->nullable();
-            $table->string('name');
             $table->enum('type', ['pribadi', 'keluarga']);
             $table->string('photo')->nullable();
             $table->foreign('kategori_id')->references('id_kategori')->on('kategori_album')->onDelete('cascade');

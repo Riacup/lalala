@@ -65,6 +65,10 @@ class DiariController extends Controller
             $res['result'] = $data;
             return response($res);
         }
+        else{
+            $res['status'] = "Failed!";
+            return response($res);
+        }
     }
 
     /**

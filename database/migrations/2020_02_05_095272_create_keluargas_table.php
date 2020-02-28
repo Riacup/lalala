@@ -14,10 +14,11 @@ class CreateKeluargasTable extends Migration
     public function up()
     {
         Schema::create('keluarga', function (Blueprint $table) {
-            $table->increments('nik');
+            $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('kode_id')->unsigned()->nullable();
             $table->enum('hubungan',['ayah', 'ibu', 'suami', 'istri', 'anak']);
+            $table->string('nik');
             $table->string('nama_lengkap');
             $table->boolean('jenis_kelamin')->default(0);
             $table->string('tempat_lahir');

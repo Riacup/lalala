@@ -60,13 +60,14 @@ class User extends Authenticatable
         return $this->hasOne('App\User', 'user_id');
     }
 
-    public function user_keluarga()
-    {
-        return $this->hasMany('App\User', 'user_id');
-    }
     public function kode()
     {
         return $this->belongsTo('App\KodeKeluarga', 'kode_id');
+    }
+
+    public function user_keluarga()
+    {
+        return $this->hasMany('App\User', 'user_id');
     }
     
 

@@ -163,6 +163,8 @@ class PenggunaController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $data = Profile::where('id',$id)->first();
+      $data->delete();
+      return redirect()->route('dashboard_admin.pengguna', $data->id_to)->with('destroy','Yakin ingin menghapus data?'); 
     }
 }

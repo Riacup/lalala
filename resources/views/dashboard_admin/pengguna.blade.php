@@ -49,12 +49,14 @@
                   <td>{{ $d->nik }}</td>
                   <td>{{ $d->user->email }}</td>
                   <td>
-                    <a href="{{route('pengguna.show', $d->id)}}" class=" btn btn-sm btn-primary">
-                      <span>Lihat</span>
-                    </a>
-                    <a href="{{route('pengguna.destroy', $d->id)}}" class=" btn btn-sm btn-danger">
-                      <span>Hapus</span>
-                    </a>
+                      <a href="{{route('pengguna.show', $d->id)}}" class=" btn btn-sm btn-primary">
+                        <span>Lihat</span>
+                      </a>
+                      {{ csrf_field() }}
+                      {{ method_field('DELETE') }}   
+                      <a href="{{route('pengguna.destroy', $d->id)}}" class=" btn btn-sm btn-danger">
+                        <span>Hapus</span>
+                      </a>                  
                   </td>
                 </tr>
                 @endforeach
