@@ -31,8 +31,7 @@ class AuthController extends Controller
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|confirmed',
         ]);
-
-        if($request->exist == 'not-exist'){
+        if($request->exist == 0){
             $kode_keluarga = new KodeKeluarga;
             $kode_keluarga->kode = $request->kode;
             $kode_keluarga->save();
@@ -92,6 +91,7 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
+        // dd("test");
         $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',

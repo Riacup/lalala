@@ -62,7 +62,7 @@ class User extends Authenticatable
 
     public function kode()
     {
-        return $this->belongsTo('App\KodeKeluarga', 'kode_id');
+        return $this->belongsTo('App\KodeKeluarga', 'id_kode');
     }
 
     public function user_keluarga()

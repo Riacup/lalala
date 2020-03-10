@@ -19,6 +19,8 @@ Route::get('/', function () {
     return view('base/home_page');
 });
 
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 //Halaman utama atau landing
 Route::get('/landing', 'BaseController@index');
@@ -30,6 +32,8 @@ Auth::routes();
 Route::get('/admin', 'GrafikController@index');
 Route::get('/monthly-ajax/{date?}', 'GrafikController@monthlyAjax')->name('monthly-ajax'); 
 Route::get('/monthly-data/{date?}', 'GrafiksController@getMonthly')->name('monthly-trans'); 
+
+Route::get('/profilPengguna/{id}', 'PenggunaController@profilPengguna')->name('profilPengguna'); 
 
 //Halaman data pengguna
 Route::resource('/pengguna', 'PenggunaController');

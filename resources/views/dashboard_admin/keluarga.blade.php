@@ -41,18 +41,29 @@
                 @foreach($data as $d)
                 <tr>
                   <td>{{ $no++ }}</td>
-                  <td>{{ $d->user->kode->kode }}</td>
-                  <td>2</td>
-                
-                  <td>
-                    <a href="" class=" btn btn-sm btn-primary">
-                      <span>Lihat</span>
-                    </a>
-                    <a href="detail/detail_user.html" class=" btn btn-sm btn-danger">
-                      <span>Hapus</span>
-                    </a>
+                  <td>{{ $d->kode}}</td>
+                  @php
+                  $keluarga = 0;
+                  $user = 0;
+                  if($d->kode_user) $user = $d->kode_user->count();
+                  if($d->kode_keluarga) $keluarga = $d->kode_keluarga->count();
+                  $count = $user+$keluarga;
+                  @endphp
+                  <td>{{ $count }}</td>
+                  <td class="d-flex">
+                      <a href="{{route('keluarga.show', $d->id_kode)}}" class=" btn btn-sm btn-primary mr-2">
+                        <span>Lihat</span>
+                      </a>
+                      <form action="{{route('keluarga.destroy', $d->id_kode)}}" method="post" class="destroy">
+                      {{ csrf_field() }}
+                      {{ method_field('DELETE') }}   
+                      <button type="submit" class=" btn btn-sm btn-danger mr-2">
+                        Hapus
+                      </button>
+                      </form>             
                   </td>
                 </tr>
+                @endforeach
                 </tbody>
               </table>
             </div>

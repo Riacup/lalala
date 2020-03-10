@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
 class DataKeluargaController extends Controller
 {
     /**
@@ -14,6 +15,7 @@ class DataKeluargaController extends Controller
     public function index()
     {
         $data = \App\KodeKeluarga::with('kode_user', 'kode_keluarga')->get();
+        // dd($data->kode_keluarga);
         return view('dashboard_admin.keluarga', compact('data'));
     }
 
@@ -44,9 +46,10 @@ class DataKeluargaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_kode)
     {
-        //
+        $data = \App\User::where('kode_id', '=', $id_kode)->get();
+        return view('dashboard_admin.detail_keluarga', compact('data'));
     }
 
     /**
@@ -80,6 +83,8 @@ class DataKeluargaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = \App\KodeKeluarga::where('id_kode', $id)->first();
+        $data->delete();
+        return redirect()->route('keluarga.index')->with('destroy','Yakin ingin menghapus data?');
     }
 }

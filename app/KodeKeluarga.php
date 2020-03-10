@@ -16,11 +16,11 @@ class KodeKeluarga extends Model
 
     public function kode_user()
     {
-        return $this->hasMany('App\KodeKeluarga', 'kode_id');
+        return $this->hasMany('App\User', 'kode_id');
     }
 
-    public function keluarga_kode()
+    public function kode_keluarga()
     {
-        return $this->belongsTo('App\KodeKeluarga', 'user_id');
+        return $this->belongsTo('App\Keluarga', 'kode_id');
     }
 }

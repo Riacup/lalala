@@ -48,15 +48,17 @@
                   </td>
                   <td>{{ $d->nik }}</td>
                   <td>{{ $d->user->email }}</td>
-                  <td>
-                      <a href="{{route('pengguna.show', $d->id)}}" class=" btn btn-sm btn-primary">
+                  <td class="d-flex">
+                      <a href="{{route('pengguna.show', $d->id)}}" class=" btn btn-sm btn-primary mr-2">
                         <span>Lihat</span>
                       </a>
+                      <form action="{{route('pengguna.destroy', $d->id)}}" method="post" class="destroy">
                       {{ csrf_field() }}
                       {{ method_field('DELETE') }}   
-                      <a href="{{route('pengguna.destroy', $d->id)}}" class=" btn btn-sm btn-danger">
-                        <span>Hapus</span>
-                      </a>                  
+                      <button type="submit" class=" btn btn-sm btn-danger mr-2">
+                        Hapus
+                      </button>
+                      </form>             
                   </td>
                 </tr>
                 @endforeach

@@ -14,9 +14,12 @@ class GrafikController extends Controller
      */
     public function index()
     {
-        $years = User::selectRaw('YEAR(created_at) as year')->orderBy('created_at', 'desc')->distinct()->get();
-        //dd("test");
-        return view('dashboard_admin.admin', compact( 'years'));
+        // $years = date('Y');
+        // $monthly = User::where('created_at', $years)->get();
+        // // dd($years);
+
+        // return view('dashboard_admin.admin', compact( 'years', 'mon'));
+        return view('dashboard_admin.admin');
     }
 
     /**

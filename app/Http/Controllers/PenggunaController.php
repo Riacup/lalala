@@ -132,6 +132,15 @@ class PenggunaController extends Controller
         return view('dashboard_admin.detail_pengguna', compact('data'));
     }
 
+    public function profilPengguna($id)
+    {
+        $data = \App\Profile::with('user', 'domisili')->where('user_id', '=', $id)->get();
+
+        return view('dashboard_admin.detail_pengguna', compact('data'));
+    }
+
+ 
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -163,8 +172,8 @@ class PenggunaController extends Controller
      */
     public function destroy($id)
     {
-      $data = Profile::where('id',$id)->first();
+      $data = \App\Profile::where('id', $id)->first();
       $data->delete();
-      return redirect()->route('dashboard_admin.pengguna', $data->id_to)->with('destroy','Yakin ingin menghapus data?'); 
+      return redirect()->route('pengguna.index')->with('destroy','Yakin ingin menghapus data?'); 
     }
 }

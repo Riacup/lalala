@@ -48,21 +48,27 @@ class AlbumController extends Controller
     {
         Validator::make($request->all(), [
             'type' => 'required|max:255',
-            'photo' => 'mimes:pdf,jpeg,jpg,png,gif|required|max:10000',
-          ])->validate();
-
+            'photo' => 'required',
+            'photo.*' => 'image|mimes:pdf,jpeg,jpg,png,gif|max:10000',
+        ])->validate();
+        
         $kategori_id = $request->input('kategori_id');
         $user_id = $request->input('user_id');
         $type = $request->input('type');
-        foreach ($request->photo as $photo) {
-            $photo = Storage::disk('public')->putFile('album',$photo, 'public');
-            
+        $photos = array();
+        if($files = $request->file('photo'))
+        {
+            foreach($files as $file)
+            {
+                $name = Storage::disk('public')->putFile('album',$file, 'public'); 
+                $photos[] = $name;  
+            }
         }
         $data = new \App\Album();
         $data->kategori_id = $kategori_id;
         $data->user_id = $user_id;
         $data->type = $type;
-        $data->photo = $photo;
+        $data->photo = json_encode($photos);
 
         if($data->save()){
             $res['status'] = "Success!";
@@ -73,6 +79,31 @@ class AlbumController extends Controller
             $res['status'] = "Failed!";
             return response($res);
         }
+        // $file= new File();
+        // $file->filenames=json_encode($data);
+        // $file->save();
+        // return back()->with('success', 'Data Your files has been successfully added');
+         
+        
+        // foreach ($request->photo as $photo) {
+        //     $photo = Storage::disk('public')->putFile('album',$photo, 'public');
+        //     $photos[] = $photo;
+        // }
+        // $data = new \App\Album();
+        // $data->kategori_id = $kategori_id;
+        // $data->user_id = $user_id;
+        // $data->type = $type;
+        // $data->photo = json_encode($photos);
+
+        // if($data->save()){
+        //     $res['status'] = "Success!";
+        //     $res['result'] = $data;
+        //     return response($res);
+        // }
+        // else{
+        //     $res['status'] = "Failed!";
+        //     return response($res);
+        // }
     }
 
     /**
