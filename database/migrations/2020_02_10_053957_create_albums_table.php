@@ -19,8 +19,8 @@ class CreateAlbumsTable extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->enum('type', ['pribadi', 'keluarga']);
             $table->string('photo')->nullable();
-            $table->foreign('kategori_id')->references('id_kategori')->on('kategori_album')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('kategori_id')->references('id_kategori')->on('kategori_album');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

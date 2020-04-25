@@ -21,8 +21,11 @@
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-header">{{DB::table('users')->where('id','=', Auth::user()->id)->value('name')}}</span>
           <div class="dropdown-divider"></div>
-          <a href="/changePassword" class="dropdown-item">
-          <i class="fas fa-edit"></i> Ubah Password 
+          <a href="{{ url('/profileAdmin') }}" class="dropdown-item">
+          <i class="fas fa-user"></i> Profile Admin
+          </a>
+          <a href="{{ url('/changePassword') }}" class="dropdown-item">
+          <i class="fas fa-edit"></i> Change Password 
           </a>
           <a href="{{ url('/login') }}" class="dropdown-item"
                             onclick="event.preventDefault();

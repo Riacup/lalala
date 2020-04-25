@@ -20,8 +20,8 @@ class CreateDokumensTable extends Migration
             $table->string('name');
             $table->enum('type', ['pribadi', 'keluarga']);
             $table->string('file')->nullable();
-            $table->foreign('kategori_id')->references('id_kategori')->on('kategori_dokumen')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('kategori_id')->references('id_kategori')->on('kategori_dokumen');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -19,8 +19,4 @@ class KodeKeluarga extends Model
         return $this->hasMany('App\User', 'kode_id');
     }
 
-    public function kode_keluarga()
-    {
-        return $this->belongsTo('App\Keluarga', 'kode_id');
-    }
 }

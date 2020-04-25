@@ -42,32 +42,32 @@ class User extends Authenticatable
     
     public function user_dok()
     {
-        return $this->hasMany('App\User', 'user_id');
+        return $this->hasMany('App\Dokumen', 'user_id');
     }
 
     public function user_album()
     {
-        return $this->hasMany('App\User', 'user_id');
+        return $this->hasMany('App\Album', 'user_id');
     }
 
     public function user_diari()
     {
-        return $this->hasMany('App\User', 'user_id');
+        return $this->hasMany('App\Diari', 'user_id');
     }
 
     public function user_profile()
     {
-        return $this->hasOne('App\User', 'user_id');
+        return $this->hasOne('App\Profile', 'user_id');
     }
 
     public function kode()
     {
-        return $this->belongsTo('App\KodeKeluarga', 'id_kode');
+        return $this->belongsTo('App\KodeKeluarga', 'kode_id');
     }
 
     public function user_keluarga()
     {
-        return $this->hasMany('App\User', 'user_id');
+        return $this->hasMany('App\Keluarga', 'user_id');
     }
     
 

@@ -47,11 +47,11 @@ class KeluargaController extends Controller
     public function store(Request $request)
     {
         $user_id = $request->input('user_id');
-        $kode_id = $request->input('kode_id');
         $hubungan = $request->input('hubungan');
         $nama_lengkap = $request->input('nama_lengkap');
         $nik = $request->input('nik');
         $jenis_kelamin = $request->input('jenis_kelamin');
+        $status = $request->input('status');
         $tempat_lahir = $request->input('tempat_lahir');
         $tanggal_lahir = $request->input('tanggal_lahir');
         $tanggal_kematian = $request->input('tanggal_kematian');
@@ -60,11 +60,11 @@ class KeluargaController extends Controller
 
         $data = new \App\Keluarga();
         $data->user_id = $user_id;
-        $data->kode_id = $kode_id;
         $data->hubungan = $hubungan;
         $data->nik = $nik;
         $data->nama_lengkap = $nama_lengkap;
         $data->jenis_kelamin = $jenis_kelamin;
+        $data->status = $status;
         $data->tempat_lahir = $tempat_lahir;
         $data->tanggal_lahir = $tanggal_lahir;
         $data->tanggal_kematian = $tanggal_kematian;
@@ -119,7 +119,29 @@ class KeluargaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $nama_lengkap = $request->input('nama_lengkap');
+        $status = $request->input('status');
+        $tanggal_kematian = $request->input('tanggal_kematian');
+        $lokasi_pemakaman = $request->input('lokasi_pemakaman');
+        $foto = Storage::disk('public')->putFile('keluarga',$request->file('foto'), 'public');  
+
+        $data = \App\Keluarga::where('id',$id)->first();
+        $data->nama_lengkap = $nama_lengkap;
+        $data->status = $status;
+        $data->tanggal_kematian = $tanggal_kematian;
+        $data->lokasi_pemakaman = $lokasi_pemakaman;
+        $data->foto = $foto;
+
+        if($data->save()){
+            $res['status'] = "Success!";
+            $res['result'] = $data;
+            return response($res);
+        }
+        else{
+            $res['status'] = "Failed!";
+            return response($res);
+        }
     }
 
     /**
@@ -130,6 +152,16 @@ class KeluargaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = \App\Keluarga::where('id',$id)->first();
+
+        if($data->delete()){
+            $res['status'] = "Deleted Success!";
+            $res['result'] = $data;
+            return response($res);
+        }
+        else{
+            $res['status'] = "Failed!";
+            return response($res);
+        }
     }
 }

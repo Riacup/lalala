@@ -19,9 +19,7 @@ Route::get('/', function () {
     return view('base/home_page');
 });
 
-
-
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 //Halaman utama atau landing
 Route::get('/landing', 'BaseController@index');
 
@@ -29,9 +27,16 @@ Route::get('/landing', 'BaseController@index');
 Auth::routes();
 
 //Halaman dashboard
-Route::get('/admin', 'GrafikController@index');
-Route::get('/monthly-ajax/{date?}', 'GrafikController@monthlyAjax')->name('monthly-ajax'); 
-Route::get('/monthly-data/{date?}', 'GrafiksController@getMonthly')->name('monthly-trans'); 
+Route::get('/admin', 'AdminController@index');
+Route::get('/user_register', 'AdminController@user_register')->name('user_register');
+
+Route::get('/changePassword', function(){
+    return view('dashboard_admin/changePassword');
+});
+
+Route::post('/change-password', 'ChangePasswordController@store')->name('change.password');
+
+Route::get('/profileAdmin', 'AdminController@data'); 
 
 Route::get('/profilPengguna/{id}', 'PenggunaController@profilPengguna')->name('profilPengguna'); 
 
@@ -40,3 +45,9 @@ Route::resource('/pengguna', 'PenggunaController');
 
 //Halaman data keluarga
 Route::resource('/keluarga', 'DataKeluargaController');
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

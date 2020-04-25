@@ -59,23 +59,32 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
+            'kode' => 'required|string',
             'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|confirmed'
+            'password' => 'required|string|confirmed',
         ]);
+        if($request->exist == 0){
+            $kode_keluarga = new KodeKeluarga;
+            $kode_keluarga->kode = $request->kode;
+            $kode_keluarga->save();
+            
+        }else {
+            $kode_keluarga = KodeKeluarga::where('kode', $request->kode)->first();
+        }
+            
         $user = new User([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'kode_id' => $kode_keluarga->id_kode,
+            'password' => bcrypt($request->password)
         ]);
 
-        $user = $request->user();
         $user->save();
         $user->assignRole('admin');
         $status = "Successfully created admin!";
         $data = Auth::user();
         return response()->json([
             'status' => $status,
-            'data' => $data,
         ], 201);
     }
 
@@ -142,6 +151,66 @@ class AuthController extends Controller
     public function user(Request $request)
     {
         $user = User::with('user_profile')->get();
-        return response()->json($user);
+        
+        if(count($user) > 0){ //mengecek apakah data kosong atau tidak
+            $res['status'] = "Success!";
+            $res['result'] = $user;
+            return response($res);
+        }
+        else{
+            $res['status'] = "Empty!";
+            return response($res);
+        }
+    }
+
+    public function showUser($id)
+    {
+        $data = \App\User::with('user_profile')->where('id',$id)->get();
+
+        if(count($data) > 0){ //mengecek apakah data kosong atau tidak
+            $res['status'] = "Success!";
+            $res['result'] = $data;
+            return response($res);
+        }
+        else{
+            $res['status'] = "Empty!";
+            return response($res);
+        }
+    }
+
+    public function editName(Request $request, $id)
+    {
+        $name = $request->input('name');
+
+        $data = \App\User::where('id',$id)->first();
+        $data->name = $request->name;
+
+        if($data->save()){
+            $res['status'] = "Success!";
+            $res['result'] = $data;
+            return response($res);
+        }
+        else{
+            $res['status'] = "Failed!";
+            return response($res);
+        }
+    }
+    public function editKode(Request $request, $id)
+    {
+        $kode_keluarga = $request->input('kode');
+
+        $data = \App\User::where('id',$id)->first();
+        $keluarga = \App\KodeKeluarga::where('id_kode',$data->kode_id)->first();
+        $keluarga->kode = $request->kode;
+
+        if($keluarga->save()){
+            $res['status'] = "Success!";
+            $res['result'] = $keluarga;
+            return response($res);
+        }
+        else{
+            $res['status'] = "Failed!";
+            return response($res);
+        }
     }
 }

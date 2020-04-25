@@ -128,8 +128,7 @@ class ProfileController extends Controller
         $nama_belakang = $request->input('nama_belakang');
         $recovery_data = $request->input('recovery_data');
         $domisili_id = $request->input('domisili_id');
-        $foto = Storage::disk('public')->putFile('foto_profil',$request->file('foto'), 'public');
-        $name = $request->input('name');  
+        $foto = Storage::disk('public')->putFile('foto_profil',$request->file('foto'), 'public');  
 
         $data = \App\Profile::where('id',$id)->first();
         $data->nama_depan = $nama_depan;
@@ -137,14 +136,10 @@ class ProfileController extends Controller
         $data->recovery_data = $recovery_data;
         $data->domisili_id = $domisili_id;
         $data->foto = $foto;
-        $data->save();
-        $user = \App\User::where('id', $data->user_id)->first();
-        $user->name = $name;
 
-        if($user->save()){
+        if($data->save()){
             $res['status'] = "Success!";
             $res['result'] = $data;
-            $res['user'] = $user;
             return response($res);
         }
         else{
@@ -165,7 +160,7 @@ class ProfileController extends Controller
         $data = \App\Profile::where('id',$id)->first();
 
         if($data->delete()){
-            $res['status'] = "Success!";
+            $res['status'] = "Deleted Success!";
             $res['result'] = $data;
             return response($res);
         }

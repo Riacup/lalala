@@ -19,7 +19,7 @@ class CreateDiarisTable extends Migration
             $table->string('judul');
             $table->date('tanggal');
             $table->text('deskripsi');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -23,12 +23,15 @@ Route::group([
         Route::post('login', 'AuthController@login');
         Route::post('signup/user', 'AuthController@signup');
         Route::post('signup/admin', 'AuthController@register');
+        Route::post('update/name/{id}', 'AuthController@editName');
+        Route::post('update/kode/{id}', 'AuthController@editKode');
     
         Route::group([
         'middleware' => 'auth:api'
         ], function() {
             Route::get('logout', 'AuthController@logout');
             Route::get('user', 'AuthController@user');
+            Route::get('user/{id}', 'AuthController@showUser');
             
         });
 });

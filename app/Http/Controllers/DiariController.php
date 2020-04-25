@@ -144,7 +144,7 @@ class DiariController extends Controller
         $data = \App\Diari::where('id',$id)->first();
 
         if($data->delete()){
-            $res['status'] = "Success!";
+            $res['status'] = "Deleted Success!";
             $res['result'] = $data;
             return response($res);
         }

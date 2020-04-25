@@ -15,8 +15,4 @@ class Keluarga extends Model
         return $this->belongsTo('App\User', 'user_id');
     }
 
-    public function kode_keluarga()
-    {
-        return $this->belongsTo('App\KodeKeluarga', 'kode_id');
-    }
 }

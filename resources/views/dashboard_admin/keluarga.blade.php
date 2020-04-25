@@ -11,7 +11,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="/admin">Home</a></li>
               <li class="breadcrumb-item active">Data Keluarga</li>
             </ol>
           </div>
@@ -46,8 +46,7 @@
                   $keluarga = 0;
                   $user = 0;
                   if($d->kode_user) $user = $d->kode_user->count();
-                  if($d->kode_keluarga) $keluarga = $d->kode_keluarga->count();
-                  $count = $user+$keluarga;
+                  $count = $user;
                   @endphp
                   <td>{{ $count }}</td>
                   <td class="d-flex">

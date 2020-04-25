@@ -29,7 +29,7 @@
               <span class="info-box-icon bg-info elevation-1"><i class="fas fa-user"></i></span>
   
               <div class="info-box-content">
-                  <span class="info-box-text text-dark">Akun</span>
+                  <span class="info-box-text text-dark">Personal</span>
                   <span class="info-box-number text-dark">{{ DB::table('users')->count()}}</span>
               </div>
               <!-- /.info-box-content -->
@@ -63,7 +63,7 @@
   
               <div class="info-box-content">
                   <span class="info-box-text">Memori Personal</span>
-                  <?php $sum = DB::table('album')->count() + DB::table('dokumen')->count() + DB::table('diari')->count();
+                  <?php $sum = DB::table('album')->where('kategori_id', 1)->count() + DB::table('dokumen')->where('kategori_id', 1)->count() + DB::table('diari')->count();
                   ?>
                 
                   <span class="info-box-number"> <?php echo $sum ?> </span>
@@ -80,7 +80,7 @@
   
               <div class="info-box-content">
                   <span class="info-box-text">Memori Keluarga</span>
-                  <?php $sum = DB::table('album')->count() + DB::table('dokumen')->count();
+                  <?php $sum = DB::table('album')->where('kategori_id', 2)->count() + DB::table('dokumen')->where('kategori_id', 2)->count();
                   ?>
                 
                   <span class="info-box-number"> <?php echo $sum ?> </span>
@@ -99,14 +99,16 @@
               <div class="d-flex justify-content-between">
                 <h3 class="card-title">Diagram Jumlah Pengguna</h3>
               </div><br>
-              <div class="form-group d-flex col-md-3">
-                <label for="exampleFormControlSelect1">Tahun</label> &nbsp
-                <select class="form-control" id="exampleFormControlSelect1">
-                  <option>-- Pilih tahun --</option>
-                  <option>2020</option>
-                  <option>2021</option>
-                  <option>2022</option>
-                  <option>2023</option>
+              <div class="btn-group" data-toggle="btn-toggle">
+                @php
+                  $year = date('Y');
+                @endphp
+                <label for="exampleFormControlSelect1">Tahun:</label> &nbsp &nbsp 
+                <select class="form-control" id="yearFilter">
+                  <!-- <option value="" selected disabled>-- Tahun --</option> -->
+                  @foreach ($years as $y)
+                    <option value="{{$y->year}}">{{$y->year}}</option>
+                  @endforeach
                 </select>
               </div>
             </div>
@@ -119,23 +121,7 @@
           <!-- /.card -->
         </div>
         <!-- /.col-md-6 -->
-        <!-- /.col-md-6 -->
-        <div class="col-lg-12">
-          <div class="card">
-            <div class="card-header border-0">
-              <div class="d-flex justify-content-between">
-                <h3 class="card-title">Diagram Jumlah Keluarga</h3>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="position-relative mb-4">
-                <canvas id="keluarga" height="400"></canvas>
-              </div>
-            </div>
-          </div>
-          <!-- /.card -->
-        </div>
-        <!-- /.col-md-6 -->
+
       </div>
       <!-- /.row -->
     </div>
@@ -145,3 +131,136 @@
 </div>
   <!-- /.content-wrapper -->
 @endsection
+@push('js')
+<script>
+  $(function() {
+  'use strict'
+
+  var ticksStyle = {
+      fontColor: '#495057',
+      fontStyle: 'bold'
+  }
+
+  var mode = 'index'
+  var intersect = true
+  
+  $.ajax({
+      type        : 'GET',
+      url         : "{{ route('user_register') }}",
+      dataType    : 'JSON',
+      success     : function(data){
+          window.salesChart = new Chart(document.getElementById('pengguna'), {
+              type: 'bar',
+              data: {
+                  labels: ['JAN', 'FEB', 'MAR', 'APR', 'MEI', 'JUL', 'AGT', 'SEP', 'OKT', 'NOV', 'DES'],
+                  datasets: [{
+                      backgroundColor: ['#109CF1', '#FFB946', '#F7685B', '#2ED47A', '#885AF8', '#47C7EB', '#109CF1', '#FFB946', '#F7685B', '#2ED47A', '#885AF8', '#47C7EB'],
+                      borderColor: '#007bff',
+                      data: data.in
+                  }, ]
+              },
+              options: {
+                  maintainAspectRatio: false,
+                  tooltips: {
+                      mode: mode,
+                      intersect: intersect
+                  },
+                  hover: {
+                      mode: mode,
+                      intersect: intersect
+                  },
+                  legend: {
+                      display: false
+                  },
+                  scales: {
+                      yAxes: [{
+                          // display: false,
+                          gridLines: {
+                              display: true,
+                              lineWidth: '4px',
+                              color: 'rgba(0, 0, 0, .2)',
+                              zeroLineColor: 'transparent'
+                          },
+                          ticks: {
+                              beginAtZero:true,
+                          }
+                      }],
+                      xAxes: [{
+                          display: true,
+                          gridLines: {
+                              display: false
+                          },
+                          ticks: ticksStyle
+                      }]
+                  }
+              }
+          })
+      }
+  })
+  
+  $(document).on('click', '.btnFIlter', function(e){
+      e.preventDefault();
+
+      var year = $('#yearFilter').val();
+      
+      var path = "{{ route('user_register') }}?year="+year;
+      window.salesChart.destroy();
+      $.ajax({
+          type        : 'GET',
+          url         : path,
+          dataType    : 'JSON',
+          success     : function(data){
+              window.salesChart = new Chart(document.getElementById('pengguna'), {
+                  type: 'bar',
+                  data: {
+                      labels: ['JAN', 'FEB', 'MAR', 'APR', 'MEI', 'JUL', 'AGT', 'SEP', 'OKT', 'NOV', 'DES'],
+                      datasets: [{
+                          backgroundColor: ['#109CF1', '#FFB946', '#F7685B', '#2ED47A', '#885AF8', '#47C7EB', '#109CF1', '#FFB946', '#F7685B', '#2ED47A', '#885AF8', '#47C7EB'],
+                          borderColor: '#007bff',
+                          data: data.in
+                      }, ]
+                  },
+                  options: {
+                      maintainAspectRatio: false,
+                      tooltips: {
+                          mode: mode,
+                          intersect: intersect
+                      },
+                      hover: {
+                          mode: mode,
+                          intersect: intersect
+                      },
+                      legend: {
+                          display: false
+                      },
+                      scales: {
+                          yAxes: [{
+                              // display: false,
+                              gridLines: {
+                                  display: true,
+                                  lineWidth: '4px',
+                                  color: 'rgba(0, 0, 0, .2)',
+                                  zeroLineColor: 'transparent'
+                              },
+                              ticks: {
+                                  beginAtZero:true,
+                              }
+                          }],
+                          xAxes: [{
+                              display: true,
+                              gridLines: {
+                                  display: false
+                              },
+                              ticks: ticksStyle
+                          }]
+                      }
+                  }
+              })
+          }
+      })
+
+
+  })
+});
+</script>
+@endpush

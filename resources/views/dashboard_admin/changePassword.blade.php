@@ -12,16 +12,16 @@
             <div class="box box-primary">
                 <div class="container-fluid">
                 <div class="row mb-2">
-					        <div class="col-sm-6">
-						        <p style="font-size:24px">Ubah Password</p>
-					  </div>
+					<div class="col-sm-6">
+						<h1>Change Password</h1>
+					</div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-md-right" style="font-size:14px">
                                 <li class="breadcrumb-item">
                                     <a href="/profileAdmin">Profile Admin</a>
                                 </li>
                                 <li class="breadcrumb-item active">
-                                    Edit Password
+                                    Change Password
                                 </li>
                             </ol>
                         </div>			
@@ -42,30 +42,41 @@
             <div class="card">
               <div class="card-body">
                 <div class="form-group">
+                    <!-- <a class="btn-edit" style="margin-left:auto;" href="/editAdmin">
+                       Edit profile
+                    </a> -->
+      
                     <form method="POST" action="{{ route('change.password') }}">
                         @csrf 
+   
                          @foreach ($errors->all() as $error)
                             <p class="text-danger">{{ $error }}</p>
                          @endforeach 
                         </br>        
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Current Password</label> 
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Current Password</label>
+  
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="current_password" autocomplete="current-password">
                             </div>
-                        </div>  
+                        </div>
+  
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">New Password</label>  
+                            <label for="password" class="col-md-4 col-form-label text-md-right">New Password</label>
+  
                             <div class="col-md-6">
                                 <input id="new_password" type="password" class="form-control" name="new_password" autocomplete="current-password">
                             </div>
-                        </div>  
+                        </div>
+  
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">New Confirm Password</label>    
+                            <label for="password" class="col-md-4 col-form-label text-md-right">New Confirm Password</label>
+    
                             <div class="col-md-6">
                                 <input id="new_confirm_password" type="password" class="form-control" name="new_confirm_password" autocomplete="current-password">
                             </div>
-                        </div>   
+                        </div>
+   
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
