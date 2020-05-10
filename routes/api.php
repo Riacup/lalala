@@ -51,6 +51,7 @@ Route::middleware('auth:api')->group(function(){
     Route::post('/diari/update/{id}','DiariController@update');
     Route::post('/diari/delete/{id}','DiariController@destroy');
 
+    /*Modul Keluarga*/
     Route::get('/keluarga','KeluargaController@index');
     Route::get('/keluarga/{id}','KeluargaController@show');
     Route::post('/keluarga/store','KeluargaController@store');
@@ -83,8 +84,7 @@ Route::middleware('auth:api')->group(function(){
     Route::get('/album/{id}','AlbumController@show');
     Route::post('/album/store','AlbumController@store');
     Route::post('/album/update/{id}','AlbumController@update');
-    Route::post('/album/delete/{id}','AlbumController@destroy');
-        
+    Route::post('/album/delete/{id}','AlbumController@destroy');  
 });
 
 // Route::post('register', 'Auth\RegisterController@register');

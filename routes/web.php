@@ -36,12 +36,11 @@ Route::get('/changePassword', function(){
 
 Route::post('/change-password', 'ChangePasswordController@store')->name('change.password');
 
-Route::get('/profileAdmin', 'AdminController@data'); 
-
-Route::get('/profilPengguna/{id}', 'PenggunaController@profilPengguna')->name('profilPengguna'); 
+Route::get('/profileAdmin', 'AdminController@data');  
 
 //Halaman data pengguna
 Route::resource('/pengguna', 'PenggunaController');
+Route::post('/pengguna/set-status/{id}', 'PenggunaController@changeStatus')->name('setstatus');
 
 //Halaman data keluarga
 Route::resource('/keluarga', 'DataKeluargaController');

@@ -30,9 +30,9 @@
                 <thead>
                 <tr>
                   <th>No.</th>
-                  <th>Nama Lengkap</th>
-                  <th>NIK</th>
+                  <th>Username</th>
                   <th>Email</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -43,11 +43,15 @@
                 <tr>
                   <td>{{ $no++ }}</td>
                   <td>
-                    {{ $d->nama_depan }}
-                    {{ $d->nama_belakang }}  
+                    {{ $d->name }}  
                   </td>
-                  <td>{{ $d->nik }}</td>
-                  <td>{{ $d->user->email }}</td>
+                  <td>{{ $d->email }}</td>
+                  <td>
+                    <div class="custom-control custom-switch">
+                      <input id="customSwitch1" data-id="{{$d->id}}" class="custom-control-input" type="checkbox" {{ $d->status ? 'checked' : '' }}>
+                      <label data-id="{{$d->id}}" class="custom-control-label" for="customSwitch1">
+                    </div>
+                  </td>
                   <td class="d-flex">
                       <a href="{{route('pengguna.show', $d->id)}}" class=" btn btn-sm btn-primary mr-2">
                         <span>Lihat</span>
@@ -90,6 +94,22 @@
       "autoWidth": false,
     });
   });
+
+  $(function () {
+    $('.custom-control-input').change(function(){
+      // alert('Are you sure change user status?');
+      var user_id = $(this).data('id');
+      console.log($(this));
+      $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "{{route('pengguna.index')}}/set-status/"+user_id,
+        success: function(data){
+          alert('successfully change user status');
+        }
+      });
+    })
+  });  
 </script>
   <!-- <script>
          $(document).ready( function () {

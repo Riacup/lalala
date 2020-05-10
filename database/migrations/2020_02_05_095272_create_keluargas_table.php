@@ -26,7 +26,7 @@ class CreateKeluargasTable extends Migration
             $table->date('tanggal_kematian')->nullable();
             $table->string('lokasi_pemakaman')->nullable();
             $table->string('foto')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
        

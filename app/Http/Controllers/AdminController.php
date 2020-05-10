@@ -19,7 +19,6 @@ class AdminController extends Controller
             ->orderBy('created_at', 'desc')
             ->distinct()
             ->get();
-        //dd($years);
         return view('dashboard_admin/admin', compact('years'));
     }
     public function user_register(){

@@ -32,16 +32,36 @@
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
               <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h3 class="profile-username text-center">Summary Data</h3>
+                        <p class="text-muted text-center">Memori Keluarga</p>
+                        <ul class="list-group list-group-unbordered mb-2">
+                          <li class="list-group-item">
+                            <b>Jumlah Dokumen</b> <a class="float-right">{{ DB::table('dokumen')->where('type', 'keluarga')->count()}}</a>
+                          </li>
+                          <li class="list-group-item">
+                            <b>Jumlah Album</b> <a class="float-right">{{ DB::table('album')->where('type', 'keluarga')->count() }}</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="row">
                 @foreach($data as $d)
                 <div class="col-3">
-                    <div class="card" style="width:250px">
-                            <img class="card-img-top" src="/tema/images/keluarga.jpg" alt="Card image" style="width:100%">
-                            <div class="card-body">
-                            <h4 class="card-title">{{ $d->name }}</h4>
-                            <p class="card-text">{{ $d->email }}</p>
-                            <a href="{{route('profilPengguna', $d->id)}}" class="btn btn-primary">Lihat Profil</a>
-                            </div>
-                        </div>
+                    <div class="card" style="width:230px">
+                      <img class="img-thumbnail" style="width:230px"
+                      src="{{asset('storage/'.$d->profile->foto)}}"
+                      alt="User profile picture">
+                      <div class="card-body text-center">
+                        <h3 class="profile-username text-center">{{ $d->name }}</h3>
+                        <p class="text-muted text-center">{{ $d->email }}</p>
+                        <a href="{{route('pengguna.show', $d->id)}}" class="btn btn-primary">Lihat Profile</a>
+                      </div>
+                    </div>
                 </div>
                 @endforeach
               </div>

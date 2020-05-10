@@ -20,7 +20,8 @@ class TableUsers extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->foreign('kode_id')->references('id_kode')->on('kode_keluarga');
+            $table->foreign('kode_id')->references('id_kode')->on('kode_keluarga')->onDelete('cascade');
+            $table->tinyInteger('status')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

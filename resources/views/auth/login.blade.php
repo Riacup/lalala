@@ -21,7 +21,7 @@
                         @enderror
                 <!-- </div><br> -->
 
-                <label for="pass">Kata Sandi</label>
+                <label for="pass">Password</label>
                 <!-- <div class="form-textbox"> -->
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
@@ -33,11 +33,11 @@
 
                 <!-- </div> -->
                 
-                <a href="{{ url('/password/reset') }}" style="font-weight: inherit;color: #408ABD;"> Lupa kata sandi?</a>
+                <a href="{{ url('/password/reset') }}" style="font-weight: inherit;color: #408ABD;"> Forgot Password?</a>
                 <br><br>
                 <div class="form-textbox">
                     <button type="submit" class="btn-masuk">
-                        {{ __('Masuk') }}
+                        {{ __('Login') }}
                     </button>
                 </div>
             </form>

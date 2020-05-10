@@ -48,7 +48,7 @@ class DataKeluargaController extends Controller
      */
     public function show($id_kode)
     {
-        $data = \App\User::where('kode_id', '=', $id_kode)->get();
+        $data = \App\User::with('profile')->where('kode_id', '=', $id_kode)->get();
         return view('dashboard_admin.detail_keluarga', compact('data'));
     }
 

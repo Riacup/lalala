@@ -39,33 +39,33 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
-    public function user_dok()
-    {
-        return $this->hasMany('App\Dokumen', 'user_id');
-    }
-
-    public function user_album()
-    {
-        return $this->hasMany('App\Album', 'user_id');
-    }
-
-    public function user_diari()
-    {
-        return $this->hasMany('App\Diari', 'user_id');
-    }
-
-    public function user_profile()
-    {
-        return $this->hasOne('App\Profile', 'user_id');
-    }
 
     public function kode()
     {
         return $this->belongsTo('App\KodeKeluarga', 'kode_id');
     }
 
-    public function user_keluarga()
+    public function profile()
+    {
+        return $this->hasOne('App\Profile', 'user_id');
+    }
+    
+    public function dokumen()
+    {
+        return $this->hasMany('App\Dokumen', 'user_id');
+    }
+
+    public function album()
+    {
+        return $this->hasMany('App\Album', 'user_id');
+    }
+
+    public function diari()
+    {
+        return $this->hasMany('App\Diari', 'user_id');
+    }
+
+    public function keluarga()
     {
         return $this->hasMany('App\Keluarga', 'user_id');
     }

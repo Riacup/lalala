@@ -97,7 +97,7 @@ class AlbumController extends Controller
             return response($res);
         }
         else{
-            $res['status'] = "Failed!";
+            $res['status'] = "Empty!";
             return response($res);
         }
     }

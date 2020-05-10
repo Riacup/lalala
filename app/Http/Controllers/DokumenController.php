@@ -92,7 +92,7 @@ class DokumenController extends Controller
             return response($res);
         }
         else{
-            $res['status'] = "Failed!";
+            $res['status'] = "Empty!";
             return response($res);
         }
     }

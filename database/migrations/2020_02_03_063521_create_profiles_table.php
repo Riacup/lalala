@@ -25,8 +25,8 @@ class CreateProfilesTable extends Migration
             $table->string('recovery_data');
             $table->integer('domisili_id')->unsigned()->nullable();
             $table->string('foto')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('domisili_id')->references('id')->on('provinsi');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('domisili_id')->references('id')->on('provinsi')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -63,7 +63,9 @@
   
               <div class="info-box-content">
                   <span class="info-box-text">Memori Personal</span>
-                  <?php $sum = DB::table('album')->where('kategori_id', 1)->count() + DB::table('dokumen')->where('kategori_id', 1)->count() + DB::table('diari')->count();
+                  <?php $sum = DB::table('album')->where('type', 'pribadi')->count() 
+                              + DB::table('dokumen')->where('type', 'pribadi')->count() 
+                              + DB::table('diari')->count();
                   ?>
                 
                   <span class="info-box-number"> <?php echo $sum ?> </span>
@@ -80,7 +82,8 @@
   
               <div class="info-box-content">
                   <span class="info-box-text">Memori Keluarga</span>
-                  <?php $sum = DB::table('album')->where('kategori_id', 2)->count() + DB::table('dokumen')->where('kategori_id', 2)->count();
+                  <?php $sum = DB::table('album')->where('type', 'keluarga')->count() 
+                              + DB::table('dokumen')->where('type', 'keluarga')->count();
                   ?>
                 
                   <span class="info-box-number"> <?php echo $sum ?> </span>

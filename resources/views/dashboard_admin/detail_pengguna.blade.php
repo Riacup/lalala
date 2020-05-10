@@ -71,6 +71,15 @@
                   <li class="list-group-item">
                     <b>Kode Keluarga</b> <a class="float-right">{{ $d->user->kode->kode }}</a>
                   </li>
+                  <li class="list-group-item">
+                    <b>Jumlah Dokumen</b> <a class="float-right">{{ $dokumen }}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Jumlah Album</b> <a class="float-right">{{ DB::table('album')->where('type', 'pribadi')->count() }}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Jumlah Diari</b> <a class="float-right">{{ DB::table('diari')->count() }}</a>
+                  </li>
                 </ul>
                 
               </div>

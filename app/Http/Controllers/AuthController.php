@@ -111,6 +111,14 @@ class AuthController extends Controller
             return response()->json([
                 'status' => 'Unauthorized'
             ], 401);
+        
+        $user = Auth::user();
+        if ($user->status == 0){
+            return response()->json([
+                'success' => false,
+                'error' => 'Your account is deactivated.'
+            ]);
+        }
         $user = $request->user();
         $tokenResult = $user->createToken('Personal Access Token');
         $token = $tokenResult->token;
@@ -150,7 +158,7 @@ class AuthController extends Controller
      */
     public function user(Request $request)
     {
-        $user = User::with('user_profile')->get();
+        $user = User::with('profile')->get();
         
         if(count($user) > 0){ //mengecek apakah data kosong atau tidak
             $res['status'] = "Success!";
@@ -165,7 +173,7 @@ class AuthController extends Controller
 
     public function showUser($id)
     {
-        $data = \App\User::with('user_profile')->where('id',$id)->get();
+        $data = \App\User::with('profile')->where('id',$id)->get();
 
         if(count($data) > 0){ //mengecek apakah data kosong atau tidak
             $res['status'] = "Success!";
@@ -200,7 +208,7 @@ class AuthController extends Controller
         $kode_keluarga = $request->input('kode');
 
         $data = \App\User::where('id',$id)->first();
-        $keluarga = \App\KodeKeluarga::where('id_kode',$data->kode_id)->first();
+        $keluarga = \App\KodeKeluarga::where('id_kode',$data->$id)->first();
         $keluarga->kode = $request->kode;
 
         if($keluarga->save()){
@@ -213,4 +221,30 @@ class AuthController extends Controller
             return response($res);
         }
     }
+
+    public function updatePassword(Request $request)
+    {
+        $data = User::find(Auth::user()->id);
+        if(Hash::check($request->password_current, $data->password)){
+            $data->password = Hash::make($request->password);
+            $this->validate($request,
+                [
+                    'password_current' => 'required',
+                    'password' => 'required|string|min:8|confirmed|max:191',
+                    'password_confirmation' => 'required',
+                ]);
+            $data->save();
+            return response()->json([
+                'status' => 'success',
+                'result' => $data
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => 'Failed!',
+                'message' => 'Incorrect current password.'
+            ]);
+        }
+    }
 }
+
