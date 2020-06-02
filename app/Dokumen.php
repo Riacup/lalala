@@ -10,7 +10,7 @@ class Dokumen extends Model
 
     protected $primaryKey = 'id';
 
-    public function dokumen()
+    public function user()
     {
         return $this->belongsTo('App\User', 'user_id');
     }

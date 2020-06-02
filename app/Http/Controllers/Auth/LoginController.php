@@ -38,6 +38,15 @@ class LoginController extends Controller
      *
      * @return void
      */
+
+    protected function authenticated(Request $request, $user)
+    {
+        if (!$user->hasRole('admin')) {
+          Auth::logout();
+          return redirect('/')->withErrors(['Errors', 'Unauthenticated']);;
+        }
+    }
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');

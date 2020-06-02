@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Companies;
 use Auth;
+use App\Dokumen;
+use App\Album;
+use App\Diari;
 
 class AdminController extends Controller
 {
@@ -19,7 +22,13 @@ class AdminController extends Controller
             ->orderBy('created_at', 'desc')
             ->distinct()
             ->get();
-        return view('dashboard_admin/admin', compact('years'));
+        $sum_personal = Album::where('type', 'pribadi')->count() 
+                        + Dokumen::where('type', 'pribadi')->count()
+                        + Diari::count();
+        $sum_keluarga = Album::where('type', 'keluarga')->count() 
+                        + Dokumen::where('type', 'keluarga')->count();
+
+        return view('dashboard_admin/admin', compact('years', 'sum_personal', 'sum_keluarga'))->with('success', 'berhasil');
     }
     public function user_register(){
         if(isset($_GET['year'])){

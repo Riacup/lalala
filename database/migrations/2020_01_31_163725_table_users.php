@@ -17,11 +17,11 @@ class TableUsers extends Migration
             $table->increments('id');
             $table->integer('kode_id')->unsigned()->nullable();
             $table->string('name');
+            $table->tinyInteger('status')->default(1);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->foreign('kode_id')->references('id_kode')->on('kode_keluarga')->onDelete('cascade');
-            $table->tinyInteger('status')->default(1);
+            $table->foreign('kode_id')->references('id_kode')->on('kode_keluarga')->onDelete('set null');
             $table->rememberToken();
             $table->timestamps();
         });

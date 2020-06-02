@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Dokumen;
+use App\Album;
 
 class DataKeluargaController extends Controller
 {
@@ -14,7 +15,7 @@ class DataKeluargaController extends Controller
      */
     public function index()
     {
-        $data = \App\KodeKeluarga::with('kode_user')->get();
+        $data = \App\KodeKeluarga::has('kode_user')->with('kode_user')->get();
         // dd($data->kode_keluarga);
         return view('dashboard_admin.keluarga', compact('data'));
     }
@@ -49,7 +50,14 @@ class DataKeluargaController extends Controller
     public function show($id_kode)
     {
         $data = \App\User::with('profile')->where('kode_id', '=', $id_kode)->get();
-        return view('dashboard_admin.detail_keluarga', compact('data'));
+        $dokumen = Dokumen::whereHas('user', function($q) use ($id_kode){
+                    $q->where('kode_id', $id_kode)->where('type', 'keluarga');
+                    })->count();
+        $album = Album::whereHas('user', function($q) use ($id_kode){
+                    $q->where('kode_id', $id_kode)->where('type', 'keluarga');
+                    })->count();
+        
+        return view('dashboard_admin.detail_keluarga', compact('data','dokumen','album'));
     }
 
     /**

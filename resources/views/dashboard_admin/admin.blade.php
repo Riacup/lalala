@@ -62,13 +62,8 @@
               <span class="info-box-icon bg-success elevation-1"><i class="fas fa-id-badge"></i></span>
   
               <div class="info-box-content">
-                  <span class="info-box-text">Memori Personal</span>
-                  <?php $sum = DB::table('album')->where('type', 'pribadi')->count() 
-                              + DB::table('dokumen')->where('type', 'pribadi')->count() 
-                              + DB::table('diari')->count();
-                  ?>
-                
-                  <span class="info-box-number"> <?php echo $sum ?> </span>
+                  <span class="info-box-text">Memori Personal</span>            
+                  <span class="info-box-number"> {{ $sum_personal }} </span>
                   
               </div>
               <!-- /.info-box-content -->
@@ -82,11 +77,8 @@
   
               <div class="info-box-content">
                   <span class="info-box-text">Memori Keluarga</span>
-                  <?php $sum = DB::table('album')->where('type', 'keluarga')->count() 
-                              + DB::table('dokumen')->where('type', 'keluarga')->count();
-                  ?>
                 
-                  <span class="info-box-number"> <?php echo $sum ?> </span>
+                  <span class="info-box-number">{{ $sum_keluarga }} </span>
                   </div>
               <!-- /.info-box-content -->
               </div>

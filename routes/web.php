@@ -1,5 +1,6 @@
 <?php
 
+use RealRashid\SweetAlert\Facades\Alert;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +17,8 @@ Route::get('/', function () {
 });
 
 Route::get('/', function () {
+
+    Alert::alert('Title', 'Message', 'Type');
     return view('base/home_page');
 });
 
@@ -27,7 +30,7 @@ Route::get('/landing', 'BaseController@index');
 Auth::routes();
 
 //Halaman dashboard
-Route::get('/admin', 'AdminController@index');
+Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('/user_register', 'AdminController@user_register')->name('user_register');
 
 Route::get('/changePassword', function(){

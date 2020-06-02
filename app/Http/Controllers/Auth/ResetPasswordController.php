@@ -19,12 +19,18 @@ class ResetPasswordController extends Controller
     |
     */
 
-    // use ResetsPasswords;
+    use ResetsPasswords;
 
     // /**
     //  * Where to redirect users after resetting their password.
     //  *
     //  * @var string
     //  */
-    // protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::HOME;
+    
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
+
 }

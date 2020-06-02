@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Dokumen;
+use App\Album;
+use App\Diari;
 
 class PenggunaController extends Controller
 {
@@ -60,8 +62,10 @@ class PenggunaController extends Controller
     {
         $data = \App\Profile::with('user', 'domisili')->where('user_id', '=', $id)->get();
         $dokumen = Dokumen::where('user_id',$id)->where('type', 'pribadi')->count();
+        $album = Album::where('user_id',$id)->where('type', 'pribadi')->count();
+        $diari = Diari::where('user_id',$id)->count();
 
-        return view('dashboard_admin.detail_pengguna', compact('data', 'dokumen'));
+        return view('dashboard_admin.detail_pengguna', compact('data', 'dokumen', 'album', 'diari'));
     }
 
  
@@ -99,6 +103,7 @@ class PenggunaController extends Controller
     {
       $data = \App\Profile::where('id', $id)->first();
       $data->delete();
-      return redirect()->route('pengguna.index')->with('destroy','Yakin ingin menghapus data?'); 
+      return redirect()->route('pengguna')->with('destroy','Yakin ingin menghapus data?');
+      
     }
 }

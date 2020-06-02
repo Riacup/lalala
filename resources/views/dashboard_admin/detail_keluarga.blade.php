@@ -39,10 +39,10 @@
                         <p class="text-muted text-center">Memori Keluarga</p>
                         <ul class="list-group list-group-unbordered mb-2">
                           <li class="list-group-item">
-                            <b>Jumlah Dokumen</b> <a class="float-right">{{ DB::table('dokumen')->where('type', 'keluarga')->count()}}</a>
+                            <b>Jumlah Dokumen</b> <a class="float-right">{{ $dokumen }}</a>
                           </li>
                           <li class="list-group-item">
-                            <b>Jumlah Album</b> <a class="float-right">{{ DB::table('album')->where('type', 'keluarga')->count() }}</a>
+                            <b>Jumlah Album</b> <a class="float-right">{{ $album }}</a>
                           </li>
                         </ul>
                       </div>
@@ -53,9 +53,6 @@
                 @foreach($data as $d)
                 <div class="col-3">
                     <div class="card" style="width:230px">
-                      <img class="img-thumbnail" style="width:230px"
-                      src="{{asset('storage/'.$d->profile->foto)}}"
-                      alt="User profile picture">
                       <div class="card-body text-center">
                         <h3 class="profile-username text-center">{{ $d->name }}</h3>
                         <p class="text-muted text-center">{{ $d->email }}</p>

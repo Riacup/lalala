@@ -205,15 +205,34 @@ class AuthController extends Controller
     }
     public function editKode(Request $request, $id)
     {
-        $kode_keluarga = $request->input('kode');
-
         $data = \App\User::where('id',$id)->first();
-        $keluarga = \App\KodeKeluarga::where('id_kode',$data->$id)->first();
-        $keluarga->kode = $request->kode;
+        $keluarga = \App\KodeKeluarga::where('kode', $request->kode)->first();
 
-        if($keluarga->save()){
+        if($keluarga!==null){
+            $data->kode_id = $keluarga->id_kode;
+            $data->save();
             $res['status'] = "Success!";
-            $res['result'] = $keluarga;
+            $res['result'] = $data;
+            $keluargas = App\KodeKeluarga::doesntHave('kode_user')->delete();
+            return response($res);
+        }
+        else{
+            $keluarga = \App\KodeKeluarga::where('id_kode', $data->kode_id)->first();
+            $keluarga->kode = $request->kode;
+            $keluarga->save();
+            $res['status'] = "Success!";
+            $res['result'] = $data;
+            return response($res);
+        }
+    }
+
+    public function destroy($id)
+    {
+        $data = \App\KodeKeluarga::where('id_kode',$id)->first();
+
+        if($data->delete()){
+            $res['status'] = "Deleted Success!";
+            $res['result'] = $data;
             return response($res);
         }
         else{
@@ -225,6 +244,7 @@ class AuthController extends Controller
     public function updatePassword(Request $request)
     {
         $data = User::find(Auth::user()->id);
+        dd($data);
         if(Hash::check($request->password_current, $data->password)){
             $data->password = Hash::make($request->password);
             $this->validate($request,

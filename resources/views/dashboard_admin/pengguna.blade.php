@@ -97,7 +97,7 @@
 
   $(function () {
     $('.custom-control-input').change(function(){
-      // alert('Are you sure change user status?');
+      alert('Are you sure change user status?');
       var user_id = $(this).data('id');
       console.log($(this));
       $.ajax({
@@ -110,10 +110,5 @@
       });
     })
   });  
-</script>
-  <!-- <script>
-         $(document).ready( function () {
-           $('#datakaryawan').DataTable();
-           });
-      </script> -->
+  </script>
   @endsection

@@ -25,6 +25,8 @@ Route::group([
         Route::post('signup/admin', 'AuthController@register');
         Route::post('update/name/{id}', 'AuthController@editName');
         Route::post('update/kode/{id}', 'AuthController@editKode');
+        Route::post('delete/kode/{id}', 'AuthController@destroy');
+        Route::post('update/password/{id}', 'AuthController@updatePassword');
     
         Route::group([
         'middleware' => 'auth:api'

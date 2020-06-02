@@ -33,7 +33,7 @@
 
                 <!-- </div> -->
                 
-                <a href="{{ url('/password/reset') }}" style="font-weight: inherit;color: #408ABD;"> Forgot Password?</a>
+                <a href="{{ route('password.request') }}" style="font-weight: inherit;color: #408ABD;"> Forgot Password?</a>
                 <br><br>
                 <div class="form-textbox">
                     <button type="submit" class="btn-masuk">
